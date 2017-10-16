@@ -8,6 +8,7 @@ const { router: restaurantsRouter } = require('./restaurants');
 //const {dbConnect} = require('./db-knex');
 
 const app = express();
+// endpoints
 app.use('/api/restaurants/', restaurantsRouter);
 app.use(
     morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
