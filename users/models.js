@@ -1,6 +1,6 @@
 'use strict';
 
-//const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -33,13 +33,13 @@ UserSchema.methods.apiRepr = function () {
     id: this._id };
 };
 
-// UserSchema.methods.validatePassword = function (password) {
-//   return bcrypt.compare(password, this.password);
-// };
+UserSchema.methods.validatePassword = function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
-// UserSchema.statics.hashPassword = function (password) {
-//   return bcrypt.hash(password, 10);
-// };
+ UserSchema.statics.hashPassword = function (password) {
+  return bcrypt.hash(password, 10);
+ };
 
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 
