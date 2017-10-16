@@ -25,6 +25,7 @@ router.get('/', jsonParser, (req, res) => {
     });
 });
 
+
 // router.get('/:id', jsonParser, (req, res) => {
 //   BoardGame
 //     .findById(req.params.id)
@@ -36,37 +37,37 @@ router.get('/', jsonParser, (req, res) => {
 //     });
 // });
 
-// router.post('/', jsonParser, jwtAuth, (req, res) => {
-//   const requiredFields = ['bgg_url', 'name', 'minPlayers', 'maxPlayers', 'avgTime', 'avgRating', 'imgUrl'];
-//   const missingField = requiredFields.find(field => !(field in req.body));
+router.post('/', jsonParser,  (req, res) => {
+  const requiredFields = ['hours', 'cuisine', 'price', 'address', 'reservation', 'name', 'restaurant_URL', 'restaurant_Image_URL'];
+  const missingField = requiredFields.find(field => !(field in req.body));
 
-//   if (missingField) {
-//     return res.status(422).json({
-//       code: 422,
-//       reason: 'ValidationError',
-//       message: 'Missing field',
-//       location: missingField
-//     });
-//   }
-
-//   let { bgg_url, name, minPlayers, maxPlayers, avgTime, avgRating, imgUrl } = req.body;
+  if (missingField) {
+    return res.status(422).json({
+      code: 422,
+      reason: 'ValidationError',
+      message: 'Missing field',
+      location: missingField
+    });
+  }
   
-//   BoardGame
-//     .create({ bgg_url, name, minPlayers, maxPlayers, avgTime, avgRating, imgUrl })
-//     .then(data => {
-//       return res.status(201).json(data);
-//     })
-//     .catch(err => {
-//       if (err.reason === 'ValidationError') {
-//         return res.status(err.code).json(err);
-//       }
-//       if (err.code === 11000) {
-//         return res.status(409).json({ code: 409, message: 'Duplicate boardgame' });
-//       }
-//       res.status(500).json({ code: 500, message: 'Internal server error' });
-//     });
+  let { hours, cuisine, price, address, reservation, name, restaurant_URL,restaurant_Image_URL } = req.body;
+  
+  Restaurant
+    .create({ hours, cuisine, price, address, reservation, name, restaurant_URL,restaurant_Image_URL })
+    .then(data => {
+      return res.status(201).json(data);
+    })
+    .catch(err => {
+      if (err.reason === 'ValidationError') {
+        return res.status(err.code).json(err);
+      }
+      if (err.code === 11000) {
+        return res.status(409).json({ code: 409, message: 'Duplicate Restaurant' });
+      }
+      res.status(500).json({ code: 500, message: 'Internal server error' });
+    });
 
-// });
+});
 
 // router.put('/:boardgameid', jsonParser, jwtAuth, (req, res) => {
 //   BoardGame
