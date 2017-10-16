@@ -5,11 +5,13 @@ const morgan = require('morgan');
 const {PORT, CLIENT_ORIGIN} = require('./config');
 const {dbConnect} = require('./db-mongoose');
 const { router: restaurantsRouter } = require('./restaurants');
+const { router: usersRouter } = require('./users');
 //const {dbConnect} = require('./db-knex');
 
 const app = express();
 // endpoints
 app.use('/api/restaurants/', restaurantsRouter);
+app.use('/api/users', usersRouter);
 app.use(
     morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
         skip: (req, res) => process.env.NODE_ENV === 'test'
