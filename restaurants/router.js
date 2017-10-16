@@ -25,6 +25,17 @@ router.get('/', jsonParser, (req, res) => {
     });
 });
 
+router.get('/:id', jsonParser, (req, res) => {
+  Restaurant
+    .findById(req.params.id)
+    .then(restaurant => {
+      return res.status(200).json(restaurant.apiRepr());
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'something went horribly wrong' });
+    });
+});
+
 
 
 

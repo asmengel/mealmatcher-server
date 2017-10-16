@@ -1,0 +1,10 @@
+{
+    "hours": "10:00-10:00",
+    "cuisine": "american",
+    "price": 100,
+    "address": "123 easy street, NY",
+    "reservation": false,
+    "name": "Joes Taco Shack",
+    "restaurant_URL": "www.it'srainingtacos.com",
+    "restaurant_Image_URL": "www.tacopic.com"
+}
