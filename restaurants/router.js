@@ -26,16 +26,7 @@ router.get('/', jsonParser, (req, res) => {
 });
 
 
-// router.get('/:id', jsonParser, (req, res) => {
-//   BoardGame
-//     .findById(req.params.id)
-//     .then(race => {
-//       res.json(race.apiRepr());
-//     })
-//     .catch(err => {
-//       res.status(500).json({ error: 'internal server error' });
-//     });
-// });
+
 
 router.post('/', jsonParser,  (req, res) => {
   const requiredFields = ['hours', 'cuisine', 'price', 'address', 'reservation', 'name', 'restaurant_URL', 'restaurant_Image_URL'];
@@ -69,22 +60,26 @@ router.post('/', jsonParser,  (req, res) => {
 
 });
 
-// router.put('/:boardgameid', jsonParser, jwtAuth, (req, res) => {
-//   BoardGame
-//     .findByIdAndUpdate(req.params.boardgameid, {
-//       $set: {
-//         bgg_url:req.body.bgg_url,
-//         name: req.body.name,
-//         minPlayers: req.body.minPlayers,
-//         maxPlayers: req.body.maxPlayers,
-//         avgRating: req.body.avgRating,
-//         avgTime: req.body.avgTime,
-//         imgUrl: req.body.imgUrl
-//       }
-//     })
-//     .then(game => res.status(204).end())
-//     .catch(err => res.status(500).json({ message: 'Internal server error' }));
-// });
+router.put('/:restaurantid', jsonParser, (req, res) => {
+  Restaurant
+    .findByIdAndUpdate(req.params.restaurantid, {
+      $set: {
+        hours: req.body.hours,
+        cuisine: req.body.cuisine,
+        price: req.body.price,
+        address: req.body.address,
+        reservation: req.body.reservation,
+        name: req.body.name,
+        restaurant_URL: req.body.restaurant_URL,
+        restaurant_Image_URL: req.body.restaurant_Image_URL
+    
+      }
+    })
+    .then(restaurant => res.status(204).end())
+    .catch(err => { 
+      res.status(500).json({ message: 'Internal server error' })
+    });
+});
 
 
 // router.delete('/:id', jwtAuth, (req, res) => {
