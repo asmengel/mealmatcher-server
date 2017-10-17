@@ -1,18 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-require('dotenv').config()
+
 const {PORT, CLIENT_ORIGIN} = require('./config');
 const {dbConnect} = require('./db-mongoose');
 const { router: restaurantsRouter } = require('./restaurants');
 const { router: usersRouter } = require('./users');
-const { router: authRouter, basicStrategy, jwtStrategy } = require('./auth');
+// const { router: authRouter, basicStrategy, jwtStrategy } = require('./auth');
 //const {dbConnect} = require('./db-knex');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const passport = require('passport');
-passport.use(basicStrategy);
-passport.use(jwtStrategy);
+// passport.use(basicStrategy);
+// passport.use(jwtStrategy);
 const app = express();
 // endpoints
 app.use('/api/restaurants/', restaurantsRouter);

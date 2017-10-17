@@ -3,14 +3,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-//const jwt = require('jsonwebtoken');
-
+const jwt = require('jsonwebtoken');
+const jwtAuth = passport.authenticate('jwt', { session: false });
 const { Restaurant } = require('./models');
 
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
-//const jwtAuth = passport.authenticate('jwt', { session: false });
+
 router.use(jsonParser);
 
 router.get('/', jsonParser, (req, res) => {
@@ -35,9 +35,6 @@ router.get('/:id', jsonParser, (req, res) => {
       res.status(500).json({ error: 'something went horribly wrong' });
     });
 });
-
-
-
 
 router.post('/', jsonParser,  (req, res) => {
   const requiredFields = ['hours', 'cuisine', 'price', 'address', 'reservation', 'name', 'restaurant_URL', 'restaurant_Image_URL'];

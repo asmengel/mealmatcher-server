@@ -10,7 +10,7 @@
     "heroku": "node index.js",
     "travis": "mocha test/setup.test.js */*.test.js"
   },
-  "author": "Joe Turner <jturner@thinkful.com>",
+  "author": "Anthony & Matt",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -1,4 +1,3 @@
-
 'use strict';
 // endpoint is /api/users/
 
@@ -138,19 +137,7 @@ router.post('/', jsonParser, (req, res) => {
             res.status(500).json({ code: 500, message: 'Internal server error' });
         });
 });
-// get all users for admin testing
 
-// router.get('/', (req, res) => {
-//     return user.find()
-//         .then(user => {
-//             return res.status(200).json(user.apiRepr());
-//         })
-//         .catch(err => {
-//             res.status(500).json({ code: 500, message: 'Internal server error' });
-//         });
-// });
-
-// access user by id
 router.get('/:id', jwtAuth, (req, res) => {
     return User.findById()
         .then(user => {
@@ -161,7 +148,6 @@ router.get('/:id', jwtAuth, (req, res) => {
         });;
 });
 
-// delete user and playlists
 router.delete('/:id', jwtAuth, (req, res) => {
     User
         .findByIdAndRemove(req.params.id)
