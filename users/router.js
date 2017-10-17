@@ -140,15 +140,16 @@ router.post('/', jsonParser, (req, res) => {
 });
 // get all users for admin testing
 
-router.get('/', (req, res) => {
-    return user.find()
-        .then(user => {
-            return res.status(200).json(user.apiRepr());
-        })
-        .catch(err => {
-            res.status(500).json({ code: 500, message: 'Internal server error' });
-        });
-});
+// router.get('/', (req, res) => {
+//     return user.find()
+//         .then(user => {
+//             return res.status(200).json(user.apiRepr());
+//         })
+//         .catch(err => {
+//             res.status(500).json({ code: 500, message: 'Internal server error' });
+//         });
+// });
+
 // access user by id
 router.get('/:id', jwtAuth, (req, res) => {
     return User.findById()
