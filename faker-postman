@@ -8,3 +8,10 @@
     "restaurant_URL": "www.it'srainingtacos.com",
     "restaurant_Image_URL": "www.tacopic.com"
 }
+
+{
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "username": "username",
+    "password": "password123"
+}
