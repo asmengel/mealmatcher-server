@@ -8,5 +8,6 @@ module.exports = {
         process.env.DATABASE_URL || 'mongodb://localhost/meal-matcher',
   TEST_DATABASE_URL:
         process.env.TEST_DATABASE_URL ||
-        'mongodb://localhost/meal-matcher-test'
+        'mongodb://localhost/meal-matcher-test',
+  JWT_EXPIRY: process.env.JWT_EXPIRY
 };

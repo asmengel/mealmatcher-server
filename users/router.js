@@ -139,11 +139,12 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 router.get('/:id', jwtAuth, (req, res) => {
-    return User.findById()
+    return User.findById(req.params.id)
         .then(user => {
             return res.status(200).json(user.apiRepr());
         })
         .catch(err => {
+            console.log(err);
             res.status(500).json({ code: 500, message: 'Internal server error' });
         });;
 });
