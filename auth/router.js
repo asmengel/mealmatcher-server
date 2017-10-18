@@ -7,7 +7,7 @@ const config = require('../config');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const strategies = require('./strategies');
-const {basicStrategy} = require('./strategies');
+const { basicStrategy } = require('./strategies');
 //const bodyParser = require('passport');
 //const jsonParser = bodyParser.json();
 //import apiRepr

@@ -36,7 +36,7 @@ router.get('/:id', jsonParser, (req, res) => {
     });
 });
 
-router.post('/', jsonParser,  (req, res) => {
+router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['hours', 'cuisine', 'price', 'address', 'reservation', 'name', 'restaurant_URL', 'restaurant_Image_URL'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -48,11 +48,11 @@ router.post('/', jsonParser,  (req, res) => {
       location: missingField
     });
   }
-  
-  let { hours, cuisine, price, address, reservation, name, restaurant_URL,restaurant_Image_URL } = req.body;
-  
+
+  let { hours, cuisine, price, address, reservation, name, restaurant_URL, restaurant_Image_URL } = req.body;
+
   Restaurant
-    .create({ hours, cuisine, price, address, reservation, name, restaurant_URL,restaurant_Image_URL })
+    .create({ hours, cuisine, price, address, reservation, name, restaurant_URL, restaurant_Image_URL })
     .then(data => {
       return res.status(201).json(data);
     })
@@ -80,11 +80,11 @@ router.put('/:restaurantid', jsonParser, (req, res) => {
         name: req.body.name,
         restaurant_URL: req.body.restaurant_URL,
         restaurant_Image_URL: req.body.restaurant_Image_URL
-    
+
       }
     })
     .then(restaurant => res.status(204).end())
-    .catch(err => { 
+    .catch(err => {
       res.status(500).json({ message: 'Internal server error' })
     });
 });
