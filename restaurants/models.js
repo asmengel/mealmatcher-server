@@ -11,8 +11,11 @@ const restaurantSchema = mongoose.Schema({
   reservation: { type: Boolean, required: true },
   name: { type: String, required: true },
   restaurant_URL: { type: String, required: true, unique: true },
-  restaurant_Image_URL: { type: String, required: true, unique: true }
-
+  restaurant_Image_URL: { type: String, required: true, unique: true },
+  eaters:[{
+    name: {type:String},
+    email: {type:String}
+  }]
 });
 
 restaurantSchema.methods.apiRepr = function () {
@@ -24,10 +27,12 @@ restaurantSchema.methods.apiRepr = function () {
     reservation: this.reservation,
     name: this.name,
     restaurant_URL: this.restaurant_URL,
-    restaurant_Image_URL: this.restaurant_Image_URL
-
+    restaurant_Image_URL: this.restaurant_Image_URL,
+    eaters: this.eaters
   };
 };
+
+
 
 const Restaurant = mongoose.models.Restaurant || mongoose.model('Restaurant', restaurantSchema);
 

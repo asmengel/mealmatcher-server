@@ -97,4 +97,28 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(500).json({ message: 'Internal server error' }));
 });
 
+router.post('/:restaurantid/eaters', jsonParser, (req, res) => {
+  Restaurant
+    .findByIdAndUpdate(req.params.restaurantid, {
+      $push:{
+        eaters: {
+          name: req.body.name,
+          email: req.body.email
+        }
+      }
+    }) 
+    .then(restaurant => res.status(204).end())
+    .catch(err => {
+      res.status(500).json({ message: 'Internal server error' })
+    });
+})
+
+/*
+ {
+  name: matt,
+  email: matt@gmail.com
+ }
+*/
+
+
 module.exports = { router };
