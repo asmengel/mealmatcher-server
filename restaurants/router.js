@@ -97,7 +97,7 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(500).json({ message: 'Internal server error' }));
 });
 
-router.post('/:restaurantid/eaters', jsonParser, (req, res) => {
+router.post('/:restaurantid', jsonParser, (req, res) => {
   Restaurant
     .findByIdAndUpdate(req.params.restaurantid, {
       $push:{
@@ -107,7 +107,7 @@ router.post('/:restaurantid/eaters', jsonParser, (req, res) => {
         }
       }
     }) 
-    .then(restaurant => res.status(204).end())
+    .then(restaurant => res.status(201).end())
     .catch(err => {
       res.status(500).json({ message: 'Internal server error' })
     });
@@ -115,7 +115,13 @@ router.post('/:restaurantid/eaters', jsonParser, (req, res) => {
 
 router.delete('/:restaurantid/eaters/:id', (req, res) => {
   Restaurant
-    .findByIdAndRemove(req.params.id)
+    .findByIdAndUpdate(req.params.restaurantid, {
+      $pull:{
+        eaters: {
+          _id: req.params.id
+        }
+      }
+    })
     .then(restaurant => res.status(204).end())
     .catch(err => res.status(500).json({ message: 'Internal server error' }));
 });
